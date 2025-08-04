@@ -1,7 +1,14 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\MarcaController;
 
-Route::post('/register', [UsuarioController::class, 'register']);
-Route::post('/login', [UsuarioController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [UsuarioController::class, 'logout']);
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+Route::apiResource('usuario', UsuarioController::class);
+Route::apiResource('marca', MarcaController::class);
+
